@@ -22,7 +22,7 @@
 #           -e GITHUB_REPOSITORY="ossf/scorecard" \
 #           laurentsimon/scorecard-action:latest
 
-FROM golang:1.22.1@sha256:af65374fc66d5752364535f761408af0b7852d1223fe4af200033b12c958715b AS builder
+FROM golang:1.22.2@sha256:c4fb952e712efd8f787bcd8e53fd66d1d83b7dc26adabc218e9eac1dbf776bdf AS builder
 WORKDIR /src
 ENV CGO_ENABLED=0
 COPY go.* ./
@@ -35,7 +35,7 @@ ARG TARGETARCH
 RUN CGO_ENABLED=0 make build
 
 # Need root for GitHub Actions support
-FROM gcr.io/distroless/base@sha256:280852156756ea3f39f9e774a30346f2e756244e1f432aea3061c4ac85d90a66
+FROM gcr.io/distroless/base@sha256:9bc3117a99c731a41200a28774405125cb6fbda1819f4a1af88bd3bfad5dcf32
 COPY --from=build /src/scorecard-action /
 COPY policies/template.yml /policy.yml
 ENTRYPOINT [ "/scorecard-action" ]
