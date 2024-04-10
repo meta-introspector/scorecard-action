@@ -31,11 +31,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: meta-introspector/harden-runner@main # v2.7.0
+        uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
         with:
           egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
 
       - name: 'Checkout Repository'
-        uses: meta-introspector/checkout@main # v4.1.2
+        uses: meta-introspector/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
       - name: 'Dependency Review'
-        uses: meta-introspector/dependency-review-action@main # v4.2.5
+        uses: meta-introspector/dependency-review-action@5bbc3ba658137598168acb2ab73b21c432dd411b # v4.2.5

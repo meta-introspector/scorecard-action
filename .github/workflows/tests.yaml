@@ -17,8 +17,8 @@ jobs:
     permissions:
       id-token: write # Needed to pick up on signing with a GitHub workflow identity.
     steps:
-      - uses: meta-introspector/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
-      - uses: meta-introspector/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+      - uses: meta-introspector/checkout@main # v4.1.2
+      - uses: meta-introspector/setup-go@main # v5.0.0
         with:
           go-version-file: go.mod
           cache: true
@@ -26,7 +26,7 @@ jobs:
         # cannot run tests with race because we are mutating state (setting ENV variables)
         run: GITHUB_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }} go test -covermode=atomic  -coverprofile=unit-coverage.out ./...
       - name: Upload codecoverage
-        uses: meta-introspector/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3.1.6
+        uses: meta-introspector/codecov-action@main # v3.1.6
         with:
          files: ./unit-coverage.out
          verbose: true
@@ -38,8 +38,8 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
     steps:
-      - uses: meta-introspector/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
-      - uses: meta-introspector/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+      - uses: meta-introspector/checkout@main # v4.1.2
+      - uses: meta-introspector/setup-go@main # v5.0.0
         with:
           go-version-file: go.mod
           cache: true
